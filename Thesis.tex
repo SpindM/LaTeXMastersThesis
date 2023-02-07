@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% MAIN DOCUMENT FOR COMPILING %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\input{MT_Header.tex}
+\makenoidxglossaries
+\input{Glossary.tex}
+\begin{document}
+
+\input{Titlepage.tex}
+\setcounter{secnumdepth}{0}
+\pagenumbering{roman} %
+
+\section{Acknowledgements}
+I would firstly like to thank 
+
+\vspace{1em}
+.....
+
+\vspace{1em}
+.....
+
+\vspace{1em}
+.....
+
+\vspace{1em}
+
+.....
+\vspace{2em}
+
+Your Name
+
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\begin{singlespacing}
+% print the glossary (list of acronyms)
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+\printnoidxglossary[type=\acronymtype,style=long]
+\end{singlespacing}
+\newpage
+% abstract
+\input{Chapters/Abstract.tex}
+\addcontentsline{toc}{section}{Abstract}
+\newpage
+\selectlanguage{german} % for german abstract
+\input{Chapters/Abstract_ger.tex}
+\addcontentsline{toc}{section}{Zusammenfassung}
+\newpage
+\pagenumbering{arabic}
+\setcounter{secnumdepth}{4} % sets how deep the table of contents should be. can be modified
+\selectlanguage{english}
+\fancyhead[L]{\fancyplain{}\slshape{\rightmark}}        % left header filled with section title
+% introduction
+\input{Chapters/Introduction.tex}
+\newpage
+% Methods
+\input{Chapters/Methods.tex}
+\newpage
+% Results
+\input{Chapters/Results.tex}
+\newpage
+% Discussion
+\input{Chapters/Discussion.tex}
+\newpage
+% Reference section. the reference style is "apacite". 
+\bibliographystyle{apacite}
+\bibliography{References.bib}
+
+\newpage
+%%%% Here begins the appendix. for that, I modified the header, and changed the figure numbering, so that it starts again at 1, abd include the appendix number, e.g.: "Figure A1"
+\fancyhead[L]{}         %  left header empty again
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\renewcommand\thetable{\thesection.\arabic{table}}  
+\setcounter{figure}{0} 
+\setcounter{table}{0} 
+\appendixtitleon
+\appendixtitletocon % for table of contents
+\input{Supplement.tex}
+
+\newpage
+\section*{Eigenständigkeitserklärung}
+\addcontentsline{toc}{section}{Eigenständigkeitserklärung}%
+Hiermit versichere ich, dass ich diese Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Außerdem versichere ich, dass ich die allgemeinen Prinzipien wissenschaftlicher Arbeit und Veröffentlichung, wie sie in den Leitlinien guter wissenschaftlicher Praxis der Carl von Ossietzky Universität Oldenburg festgelegt sind, befolgt habe. 
+
+\vspace{2em}
+
+\begin{flushleft} \normalsize
+\rule{5cm}{.4pt} \\
+Datum, Ort\\[1em]
+
+\rule{5cm}{.4pt} \\
+Unterschrift\\
+\end{flushleft}
+
+
+%%% also available in english for internationals:
+\newpage
+\section*{Declaration of Originality}
+\addcontentsline{toc}{section}{Declaration}%
+I hereby confirm that this thesis is entirely my own work. I confirm that no part of the document has been copied from either a book or any other source – including the internet – except where such sections are clearly shown as quotations and the sources have been correctly identified within the text or in the list of references.
+Moreover I confirm that I have taken notice of the ‘Leitlinien guter wissenschaftlicher Praxis’ of the University of Oldenburg.
+
+
+\vspace{2em}
+
+\begin{flushleft} \normalsize
+\rule{5cm}{.4pt} \\
+Date, Place\\[1em]
+
+\rule{5cm}{.4pt} \\
+Signature\\
+\end{flushleft}
+
+
+\end{document}

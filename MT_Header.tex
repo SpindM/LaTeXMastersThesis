@@ -1,0 +1,91 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% HEADER: Specify package options %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% google packages you might not know or want to remove. 
+
+\documentclass[12pt,a4paper]{article}
+\setcounter{tocdepth}{4}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tocbibind}  % to bind sections to toc (also acknowledgements etc) [nottoc] for not putting TOC in TOC
+\usepackage{graphicx}
+\usepackage[inline]{enumitem} % for in-line hypotheses (so you can enumerate within text).
+\usepackage[acronym,nonumberlist,toc,nopostdot,nogroupskip]{glossaries} %for acronyms
+\usepackage{textcomp} % for using symbols.
+\usepackage[left=3.5cm,right=3cm,top=2.5cm,bottom=3cm]{geometry} %sets your page margins 
+\usepackage[natbibapa]{apacite} % citation style
+\usepackage{fancyhdr}       % header info
+\pagestyle{fancy}
+\fancyhead[R]{\normalfont\thepage}
+\fancyhead[L]{}
+%\renewcommand{\headrulewidth}{0pt}
+\fancyfoot{}
+\setlength{\headheight}{15pt}%
+\setlength\parindent{0pt}
+\graphicspath{ {figures/} }     % needed for list of tables/ figures
+\usepackage{array}              % needed for list of tables/ figures
+\usepackage[onehalfspacing]{setspace} % spacing between lines
+\usepackage[hidelinks]{hyperref} % for links. if you remove "hidelinks", you get a colored border around links and references
+\usepackage{xcolor} % to mark text that needs to be edited. not needed in final version
+\usepackage{makecell} % for multiple line cells in tables
+\usepackage{wasysym} % for male/female symbols
+\usepackage{gensymb} % for commands like \degree (for MRI description)
+\usepackage[german,english]{babel} % your supported languages. 
+\usepackage{appendix}
+\usepackage[tableposition=top,labelfont=bf,font=small]{caption} %captions are used for figures and tables.
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\usepackage[labelformat=simple,labelfont=bf]{subcaption}
+\renewcommand{\thesubtable}{\Alph{subtable}} %used for subtables (if you want to have two tables 1A and 1B for one overall table 1)
+%\usepackage{multibib} % if you want to have multiple bibliographies
+%\newcites{refs}{R Packages}
+\usepackage{siunitx} %for placing numbers with units in text. (nicer spacing)
+\usepackage{pdfpages} %for appendix with pdfs
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+
+%%% for pdfs in appendix:
+\makeatletter
+\NewDocumentCommand\headerspdf{ O {pages=-} m }{% [options for include pdf]{filename.pdf}
+  \includepdf[%
+    #1,
+    pagecommand={\thispagestyle{fancy}},
+    scale=.7,
+    ]{#2}}
+\NewDocumentCommand\secpdf{somO{1}m}{% [short title]{section title}[page specification]{filename.pdf} --- possibly starred
+  \clearpage
+  \thispagestyle{fancy}%
+  \includepdf[%
+    pages=#4,
+    pagecommand={%
+     \IfBooleanTF{#1}{%
+       \section{#3}}{%
+       \IfNoValueTF{#2}{%
+         \section{#3}}{%
+         \section[#2]{#3}}}%
+   },
+    scale=.65,
+    ]%
+    {#5}
+    \addtocounter{section}{-1}%
+    \refstepcounter{section}%
+  }%
+\makeatother
+%---------------------------------------------------------------
+
+%\usepackage{fontspec}
+%%% using times new roman: 
+% is a non-free font, therefore you need to include the .ttf files for that (look for that on your machine, if you e.g. have photoshop, there are included in there, but i am not allowed to distribute them). if you dont want to use times, delete this part here.
+%\setmainfont[Ligatures=TeX,BoldFont=TIMESBD.TTF,
+%ItalicFont=TIMESI.TTF,
+%BoldItalicFont=TIMESBI.TTF,]{TIMES.TTF}
+
+
+\title{TITLE TITLE TITLE}								% Title
+\author{Your Name}								% Author
+\date{\today}	
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
